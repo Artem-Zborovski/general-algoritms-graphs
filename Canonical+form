@@ -1,0 +1,27 @@
+#include<iostream>
+#include<vector>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    ifstream input("input.txt");
+    ofstream output("output.txt");
+    int n;
+    input >> n;
+    vector < int > t(n, 0);
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < n; j++)
+        {
+            int k;
+            input >> k;
+            if(k)
+            {
+                t[j] = i + 1;
+            }
+        }
+    }
+    for(int i : t) output << i << " ";
+    return 0;
+}
