@@ -1,0 +1,30 @@
+#include<iostream>
+#include<vector>
+#include<fstream>
+using namespace std;
+
+int main()
+{
+    ifstream input("input.txt");
+    ofstream output("output.txt");
+    int n, m;
+    input >> n >> m;
+    vector < vector < int > > t(n, vector < int >());
+    for(int i = 0; i < m; i++)
+    {
+        int u, v;
+        input >> u >> v;
+        t[u - 1].push_back(v);
+        t[v - 1].push_back(u);
+    }
+    for(int i = 0; i < n; i++)
+    {
+        output << t[i].size() << " ";
+        for(int j : t[i])
+        {
+            output << j << " ";
+        }
+        output << "\n";
+    }
+    return 0;
+}
