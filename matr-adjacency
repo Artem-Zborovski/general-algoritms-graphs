@@ -1,0 +1,26 @@
+#include<iostream>
+#include<vector>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    ifstream input("input.txt");
+    ofstream output("output.txt");
+    int n, m;
+    input >> n >> m;
+    vector < vector < bool > > t(n, vector < bool >(n, 0));
+    for(int i = 0; i < m; i++)
+    {
+        int u, v;
+        input >> u >> v;
+        t[u - 1][v - 1] = 1;
+        t[v - 1][u - 1] = 1;
+    }
+    for(auto i : t)
+    {
+        for(auto j : i) output << j << " ";
+        output << "\n";
+    }
+    return 0;
+}
