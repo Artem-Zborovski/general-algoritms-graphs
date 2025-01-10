@@ -1,0 +1,50 @@
+#include<iostream>
+#include<vector>
+#include<queue>
+#include <fstream>
+
+using namespace std;
+
+vector < vector < int > > t;
+vector < int > f;
+int next_ = 1;
+
+void BFS(int u)
+{
+    queue < int > q;
+    q.push(u);
+    while(!q.empty())
+    {
+        int v = q.front();
+        q.pop();
+        if(f[v]) continue;
+        f[v] = next_++;
+        for(int i : t[v]) q.push(i);
+    }
+    return;
+}
+
+int main()
+{
+    ifstream input("input.txt");
+    ofstream output("output.txt");
+    int n;
+    input >> n;
+    t.resize(n);
+    f.assign(n, 0);
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = 0; j < n; j++)
+        {
+            int k;
+            input >> k;
+            if(k)
+            {
+                t[i].push_back(j);
+            }
+        }
+    }
+    for(int i = 0; i < n; i++) BFS(i);
+    for(int i : f) output << i << " ";
+    return 0;
+}
